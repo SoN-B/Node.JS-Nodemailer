@@ -6,21 +6,22 @@ const config = require("config");
 // 메일발송 객체
 const mailSender = {
     // 메일발송 함수
-    sendGmail: function (param) {
+    sendmail: function (param) {
         var transporter = nodemailer.createTransport({
             service: "Naver", // 메일 보내는 곳
             prot: 587,
             host: "smtp.naver.com",
-            secure: false,
+            secure: false, // TLS 를 사용하지 않으면 false, 아니면 true
             requireTLS: true,
             auth: {
                 user: config.get("senderInfo.user"), // 보내는 메일의 주소
                 pass: config.get("senderInfo.pass"), // 보내는 메일의 비밀번호
             },
         });
+
         // 메일 옵션
         var mailOptions = {
-            from: config.get("senderInfo.user"), // 보내는 메일의 주소
+            from: `"🍪스낵타임🍪" ${config.get("senderInfo.user")}`, // 보내는 메일의 주소
             to: param.toEmail, // 수신할 이메일
             subject: param.subject, // 메일 제목
             text: param.text, // 메일 내용
