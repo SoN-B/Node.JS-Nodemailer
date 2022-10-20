@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // 라우팅
-// app.use("/", require("./src/routes/test"));
+app.use("/", require("./src/routes/index"));
 
 // 연결
 app.listen(config.get("server.port"), () => {
